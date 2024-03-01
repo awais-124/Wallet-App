@@ -1,0 +1,11 @@
+creating a repository
+git init
+git remote add origin https://github.com/mharis0014/todo-app.git
+git add .
+git commit -m "first commit"
+git push -u origin main
+
+git checkout -b FEAT-AUTH
+git add .
+git commit -m "asdhgwqSDGB"
+git push -u origin FEAT-asgh
