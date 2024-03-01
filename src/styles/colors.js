@@ -1,29 +1,29 @@
 /* COLOR SCHEME USED IN THIS APP */
 
 const COLORS = {
-  PRIMARY: {
-    BLUE: '#1F6CFF',
-    ORANGE: '#FF9900',
+  primary: {
+    blue: '#1F6CFF',
+    orange: '#FF9900',
   },
-  SECONDARY: {
-    DARK_BLUE: '#004AD7',
-    OCEAN_BLUE: '#00D1FF',
-    SOFT_RED: '#FF6854',
-    PURPLE: '#8674F5',
-    RED: '#FF4444',
-    GREEN: '#17D85C',
-    BLACK: '#000000',
-    GREY_ONE: '#949494',
-    GREY_TWO: '#B5B5B5',
-    GREY_THREE: '#D7D7D7',
-    GREY_FOUR: '#F2F2F2',
-    GREY_FIVE: '#F9F9F9',
+  secondary: {
+    darkBlue: '#004AD7',
+    oceanBlue: '#00D1FF',
+    softRed: '#FF6854',
+    purple: '#8674F5',
+    red: '#FF4444',
+    green: '#17D85C',
+    black: '#000000',
+    greyOne: '#949494',
+    greyTwo: '#B5B5B5',
+    greyThree: '#D7D7D7',
+    greyFour: '#F2F2F2',
+    greyFive: '#F9F9F9',
   },
-  SHADE: {
-    BLUE_TWO: '#6FA3FF',
-    LIGHT_BLUE_TWO: '#B3D1FF',
-    LIGHT_GREEN: '#17D85C',
-    LIGHT_ORANGE: '#FF9900',
+  shade: {
+    blue: '#6FA3FF',
+    lightBlue: '#B3D1FF',
+    lightGreen: '#17D85C',
+    lightOrange: '#FF9900',
   },
 };
 
