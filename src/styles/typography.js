@@ -1,4 +1,3 @@
-import {StyleSheet} from 'react-native';
 const FONT_WEIGHT = {
   REGULAR: 'normal',
   MEDIUM: '500',
@@ -6,148 +5,51 @@ const FONT_WEIGHT = {
   BOLD: 'bold',
 };
 
-const FONT_SIZE = {
-  XS: 12,
-  S: 13,
-  MS: 14,
-  M: 16,
-  ML: 18,
-  L: 20,
-  XL: 24,
-  XXL: 32,
+const FONTS = {
+  regular: {
+    pt12: {fontSize: 12, fontWeight: FONT_WEIGHT.REGULAR},
+    pt13: {fontSize: 13, fontWeight: FONT_WEIGHT.REGULAR},
+    pt14: {fontSize: 14, fontWeight: FONT_WEIGHT.REGULAR},
+    pt16: {fontSize: 16, fontWeight: FONT_WEIGHT.REGULAR},
+    pt18: {fontSize: 18, fontWeight: FONT_WEIGHT.REGULAR},
+    pt20: {fontSize: 20, fontWeight: FONT_WEIGHT.REGULAR},
+    pt24: {fontSize: 24, fontWeight: FONT_WEIGHT.REGULAR},
+    pt32: {fontSize: 32, fontWeight: FONT_WEIGHT.REGULAR},
+  },
+  medium: {
+    pt12: {fontSize: 12, fontWeight: FONT_WEIGHT.MEDIUM},
+    pt13: {fontSize: 13, fontWeight: FONT_WEIGHT.MEDIUM},
+    pt14: {fontSize: 14, fontWeight: FONT_WEIGHT.MEDIUM},
+    pt16: {fontSize: 16, fontWeight: FONT_WEIGHT.MEDIUM},
+    pt18: {fontSize: 18, fontWeight: FONT_WEIGHT.MEDIUM},
+    pt20: {fontSize: 20, fontWeight: FONT_WEIGHT.MEDIUM},
+    pt24: {fontSize: 24, fontWeight: FONT_WEIGHT.MEDIUM},
+    pt32: {fontSize: 32, fontWeight: FONT_WEIGHT.MEDIUM},
+  },
+  semibold: {
+    pt12: {fontSize: 12, fontWeight: FONT_WEIGHT.SEMIBOLD},
+    pt13: {fontSize: 13, fontWeight: FONT_WEIGHT.SEMIBOLD},
+    pt14: {fontSize: 14, fontWeight: FONT_WEIGHT.SEMIBOLD},
+    pt16: {fontSize: 16, fontWeight: FONT_WEIGHT.SEMIBOLD},
+    pt18: {fontSize: 18, fontWeight: FONT_WEIGHT.SEMIBOLD},
+    pt20: {fontSize: 20, fontWeight: FONT_WEIGHT.SEMIBOLD},
+    pt24: {fontSize: 24, fontWeight: FONT_WEIGHT.SEMIBOLD},
+    pt32: {fontSize: 32, fontWeight: FONT_WEIGHT.SEMIBOLD},
+  },
+  bold: {
+    pt10: {fontSize: 10, fontWeight: FONT_WEIGHT.BOLD},
+    pt12: {fontSize: 12, fontWeight: FONT_WEIGHT.BOLD},
+    pt13: {fontSize: 13, fontWeight: FONT_WEIGHT.BOLD},
+    pt14: {fontSize: 14, fontWeight: FONT_WEIGHT.BOLD},
+    pt16: {fontSize: 16, fontWeight: FONT_WEIGHT.BOLD},
+    pt18: {fontSize: 18, fontWeight: FONT_WEIGHT.BOLD},
+    pt20: {fontSize: 20, fontWeight: FONT_WEIGHT.BOLD},
+    pt24: {fontSize: 24, fontWeight: FONT_WEIGHT.BOLD},
+    pt32: {fontSize: 32, fontWeight: FONT_WEIGHT.BOLD},
+  },
 };
 
-const FONTS = StyleSheet.create({
-  xsRegular: {
-    fontSize: FONT_SIZE.XS,
-    fontWeight: FONT_WEIGHT.REGULAR,
-  },
-  sRegular: {
-    fontSize: FONT_SIZE.S,
-    fontWeight: FONT_WEIGHT.REGULAR,
-  },
-  msRegular: {
-    fontSize: FONT_SIZE.MS,
-    fontWeight: FONT_WEIGHT.REGULAR,
-  },
-  mRegular: {
-    fontSize: FONT_SIZE.M,
-    fontWeight: FONT_WEIGHT.REGULAR,
-  },
-  mlRegular: {
-    fontSize: FONT_SIZE.ML,
-    fontWeight: FONT_WEIGHT.REGULAR,
-  },
-  lRegular: {
-    fontSize: FONT_SIZE.L,
-    fontWeight: FONT_WEIGHT.REGULAR,
-  },
-  xlRegular: {
-    fontSize: FONT_SIZE.XL,
-    fontWeight: FONT_WEIGHT.REGULAR,
-  },
-  xxlRegular: {
-    fontSize: FONT_SIZE.XXL,
-    fontWeight: FONT_WEIGHT.REGULAR,
-  },
-  xsMedium: {
-    fontSize: FONT_SIZE.XS,
-    fontWeight: FONT_WEIGHT.MEDIUM,
-  },
-  sMedium: {
-    fontSize: FONT_SIZE.S,
-    fontWeight: FONT_WEIGHT.MEDIUM,
-  },
-  msMedium: {
-    fontSize: FONT_SIZE.MS,
-    fontWeight: FONT_WEIGHT.MEDIUM,
-  },
-  mMedium: {
-    fontSize: FONT_SIZE.M,
-    fontWeight: FONT_WEIGHT.MEDIUM,
-  },
-  mlMedium: {
-    fontSize: FONT_SIZE.ML,
-    fontWeight: FONT_WEIGHT.MEDIUM,
-  },
-  lMedium: {
-    fontSize: FONT_SIZE.L,
-    fontWeight: FONT_WEIGHT.MEDIUM,
-  },
-  xlMedium: {
-    fontSize: FONT_SIZE.XL,
-    fontWeight: FONT_WEIGHT.MEDIUM,
-  },
-  xxlMedium: {
-    fontSize: FONT_SIZE.XXL,
-    fontWeight: FONT_WEIGHT.MEDIUM,
-  },
-  xsSemiBold: {
-    fontSize: FONT_SIZE.XS,
-    fontWeight: FONT_WEIGHT.SEMIBOLD,
-  },
-  sSemiBold: {
-    fontSize: FONT_SIZE.S,
-    fontWeight: FONT_WEIGHT.SEMIBOLD,
-  },
-  msSemiBold: {
-    fontSize: FONT_SIZE.MS,
-    fontWeight: FONT_WEIGHT.SEMIBOLD,
-  },
-  mSemiBold: {
-    fontSize: FONT_SIZE.M,
-    fontWeight: FONT_WEIGHT.SEMIBOLD,
-  },
-  mlSemiBold: {
-    fontSize: FONT_SIZE.ML,
-    fontWeight: FONT_WEIGHT.SEMIBOLD,
-  },
-  lSemiBold: {
-    fontSize: FONT_SIZE.L,
-    fontWeight: FONT_WEIGHT.SEMIBOLD,
-  },
-  xlSemiBold: {
-    fontSize: FONT_SIZE.XL,
-    fontWeight: FONT_WEIGHT.SEMIBOLD,
-  },
-  xxlSemiBold: {
-    fontSize: FONT_SIZE.XXL,
-    fontWeight: FONT_WEIGHT.SEMIBOLD,
-  },
-  xsBold: {
-    fontSize: FONT_SIZE.XS,
-    fontWeight: FONT_WEIGHT.BOLD,
-  },
-  sBold: {
-    fontSize: FONT_SIZE.S,
-    fontWeight: FONT_WEIGHT.BOLD,
-  },
-  msBold: {
-    fontSize: FONT_SIZE.MS,
-    fontWeight: FONT_WEIGHT.BOLD,
-  },
-  mBold: {
-    fontSize: FONT_SIZE.M,
-    fontWeight: FONT_WEIGHT.BOLD,
-  },
-  mlBold: {
-    fontSize: FONT_SIZE.ML,
-    fontWeight: FONT_WEIGHT.BOLD,
-  },
-  lBold: {
-    fontSize: FONT_SIZE.L,
-    fontWeight: FONT_WEIGHT.BOLD,
-  },
-  xlBold: {
-    fontSize: FONT_SIZE.XL,
-    fontWeight: FONT_WEIGHT.BOLD,
-  },
-  xxlBold: {
-    fontSize: FONT_SIZE.XXL,
-    fontWeight: FONT_WEIGHT.BOLD,
-  },
-});
-export {FONT_WEIGHT, FONT_SIZE, FONTS};
+export default FONTS;
 /* 
 12 points: Extra Small
 13 points: Small
