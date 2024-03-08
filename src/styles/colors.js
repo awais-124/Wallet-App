@@ -6,6 +6,7 @@ const COLORS = {
     orange: '#FF9900',
   },
   secondary: {
+    white: '#ffffff',
     darkBlue: '#004AD7',
     oceanBlue: '#00D1FF',
     softRed: '#FF6854',
@@ -27,4 +28,4 @@ const COLORS = {
   },
 };
 
-export {COLORS};
+export default COLORS;
