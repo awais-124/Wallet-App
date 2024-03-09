@@ -19,6 +19,7 @@ const COLORS = {
     greyThree: '#D7D7D7',
     greyFour: '#F2F2F2',
     greyFive: '#F9F9F9',
+    greySix: '#eeeeee',
   },
   shade: {
     blue: '#6FA3FF',

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
@@ -8,16 +8,40 @@ import THEME from '../styles/theme';
 import FONTS from '../styles/typography';
 
 import BottomBar from '../components/BottomBar';
-import OTPInput from '../components/Inputs/OTPInput';
 import KeyPad from '../components/KeyPads/KeyPad';
+import OTPInput from '../components/Inputs/OTPInput';
 
 import {screen_height, screen_width} from '../utils/Dimensions';
+import Danger from '../components/Alerts/Danger';
 
 const OTP = ({navigation}) => {
   const goToSignInScreen = () => navigation.navigate('SignIn');
+  const [otp, setOtp] = useState('');
+  const [isOtpValid, setIsOtpValid] = useState(false);
+
+  const clearInput = () => setOtp(prev => (prev.length === 4 ? '' : prev));
+  const toggleALert = () => setIsOtpValid(prev => !prev);
+
+  useEffect(() => {
+    let timer = 0;
+    if (otp.length !== 4) return;
+    if (+otp > 5000) {
+      timer = setTimeout(clearInput, 1000);
+    } else {
+      toggleALert();
+      timer = setTimeout(() => {
+        clearInput();
+        toggleALert();
+      }, 3000);
+    }
+    return () => clearTimeout(timer);
+  }, [otp]);
 
   return (
     <View style={[THEME.fill, styles.container]}>
+      {isOtpValid && (
+        <Danger title="The OTP Code is Invalid." icon={ICONS.IMPORTANT} />
+      )}
       <View style={styles.back}>
         <TouchableOpacity onPress={goToSignInScreen} style={styles.icon}>
           <Image source={ICONS.ARROW_LEFT} />
@@ -33,8 +57,8 @@ const OTP = ({navigation}) => {
         </Text>
         <Text style={[FONTS.bold.pt16, styles.message]}>08768262427</Text>
       </View>
-      <OTPInput />
-      <KeyPad style={styles.keypad} />
+      <OTPInput data={otp} maxLength={4} />
+      <KeyPad style={styles.keypad} dataa={otp} setData={setOtp} />
       <BottomBar />
     </View>
   );
