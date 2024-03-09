@@ -1,6 +1,7 @@
 const THEME = {
   fill: {flex: 1},
   centered: {justifyContent: 'center', alignItems: 'center'},
+  justifyCentered: {justifyContent: 'space-between', alignItems: 'center'},
   centeredFill: {
     flex: 1,
     justifyContent: 'center',

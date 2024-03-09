@@ -52,8 +52,8 @@ const styles = StyleSheet.create({
     borderColor: COLORS.secondary.greyTwo,
     borderRadius: 10,
     paddingHorizontal: 10,
-    paddingVertical: 3,
-    height: screen_height * 0.09,
+    paddingVertical: 4,
+    height: screen_height * 0.095,
     width: screen_width * 0.872,
   },
   icon: {padding: 5},
@@ -62,5 +62,5 @@ const styles = StyleSheet.create({
     margin: 0,
     color: COLORS.secondary.black,
   },
-  input: {height: '80%'},
+  input: {height: '80%', maxWidth: 'auto'},
 });

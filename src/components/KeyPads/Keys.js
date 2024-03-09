@@ -7,16 +7,24 @@ import FONTS from '../../styles/typography';
 import THEME from '../../styles/theme';
 import ICONS from '../../helpers/icons';
 
-import {screen_height, screen_width} from '../../utils/Dimensions';
+import {screen_width} from '../../utils/Dimensions';
 
-const Keys = ({isDelete = false, num = '', alpha = '', onClick}) => {
+const Keys = ({
+  empty = false,
+  isDelete = false,
+  num = '',
+  alpha = '',
+  onKeyPressed,
+}) => {
   return (
-    <TouchableOpacity onPress={onClick}>
+    <TouchableOpacity onPress={() => onKeyPressed(num)} disabled={empty}>
       {!isDelete ? (
         <View style={[THEME.centered, styles.key]}>
           <Text style={[FONTS.regular.pt24, styles.num]}>{num}</Text>
           <Text style={[FONTS.bold.pt10, styles.alpha]}>{alpha}</Text>
         </View>
+      ) : empty ? (
+        <View style={[THEME.centered, styles.delete]}></View>
       ) : (
         <View style={[THEME.centered, styles.delete]}>
           <Image source={ICONS.DELETE} />
