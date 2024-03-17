@@ -1,12 +1,6 @@
 import {useEffect, useState} from 'react';
 
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from 'react-native';
+import {View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 
 import COLORS from '../../styles/colors';
 import THEME from '../../styles/theme';
@@ -60,7 +54,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   cell: {
-    width: '22%',
+    width: `22%`,
     height: '100%',
     borderWidth: 1,
     borderRadius: 15,
@@ -75,13 +69,5 @@ const styles = StyleSheet.create({
   },
   focus: {
     borderColor: COLORS.secondary.black,
-  },
-  cursor: {
-    position: 'absolute',
-    bottom: 0,
-    width: 1,
-    height: '100%',
-    backgroundColor: COLORS.secondary.black,
-    zIndex: 2, // Ensure the cursor is above the text
   },
 });

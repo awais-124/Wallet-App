@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import COLORS from '../../styles/colors';
@@ -17,7 +15,10 @@ const Keys = ({
   onKeyPressed,
 }) => {
   return (
-    <TouchableOpacity onPress={() => onKeyPressed(num)} disabled={empty}>
+    <TouchableOpacity
+      onPress={() => onKeyPressed(num)}
+      disabled={empty}
+      activeOpacity={0.6}>
       {!isDelete ? (
         <View style={[THEME.centered, styles.key]}>
           <Text style={[FONTS.regular.pt24, styles.num]}>{num}</Text>

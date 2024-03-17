@@ -20,14 +20,18 @@ export default Logo;
 const styles = StyleSheet.create({
   logoBox: {
     width: screen_width * 0.352,
-    height: screen_height * 0.2,
+    height: screen_height * 0.18,
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  logo: {aspectRatio: 1, margin: 0},
+  logo: {
+    margin: 0,
+    width: screen_width * 0.18,
+    height: screen_height * 0.18,
+    aspectRatio: 1,
+  },
   logoText: {
     color: COLORS.secondary.white,
     ...FONTS.semibold.pt32,
-    marginTop: -screen_height * 0.03,
   },
 });

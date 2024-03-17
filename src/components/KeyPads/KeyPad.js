@@ -35,7 +35,7 @@ const KeyPad = ({style, data, setData}) => {
       <View style={[THEME.row, styles.row]}>
         <Keys empty={true} isDelete={true} />
         <Keys num="0" onKeyPressed={handleKeyPress} />
-        <Keys isDelete={true} onKeyPressed={handleKeyPress} />
+        <Keys isDelete={true} onKeyPressed={handleKeyPress} num="x" />
       </View>
     </View>
   );

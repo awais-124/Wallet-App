@@ -7,12 +7,12 @@ import COLORS from '../styles/colors';
 import THEME from '../styles/theme';
 import FONTS from '../styles/typography';
 
-import BottomBar from '../components/BottomBar';
+import CustomStatusBar from '../components/StatusBar/CustomStatusBar';
 import KeyPad from '../components/KeyPads/KeyPad';
 import OTPInput from '../components/Inputs/OTPInput';
+import Danger from '../components/Alerts/Danger';
 
 import {screen_height, screen_width} from '../utils/Dimensions';
-import Danger from '../components/Alerts/Danger';
 
 const OTP = ({navigation}) => {
   const goToSignInScreen = () => navigation.navigate('SignIn');
@@ -26,7 +26,10 @@ const OTP = ({navigation}) => {
     let timer = 0;
     if (otp.length !== 4) return;
     if (+otp > 5000) {
-      timer = setTimeout(clearInput, 1000);
+      timer = setTimeout(() => {
+        navigation.navigate('ForgotPass');
+        setOtp('');
+      }, 1000);
     } else {
       toggleALert();
       timer = setTimeout(() => {
@@ -39,9 +42,8 @@ const OTP = ({navigation}) => {
 
   return (
     <View style={[THEME.fill, styles.container]}>
-      {isOtpValid && (
-        <Danger title="The OTP Code is Invalid." icon={ICONS.IMPORTANT} />
-      )}
+      <CustomStatusBar />
+      {isOtpValid && <Danger title="The OTP Code is Invalid." />}
       <View style={styles.back}>
         <TouchableOpacity onPress={goToSignInScreen} style={styles.icon}>
           <Image source={ICONS.ARROW_LEFT} />
@@ -59,7 +61,6 @@ const OTP = ({navigation}) => {
       </View>
       <OTPInput data={otp} maxLength={4} />
       <KeyPad style={styles.keypad} dataa={otp} setData={setOtp} />
-      <BottomBar />
     </View>
   );
 };
