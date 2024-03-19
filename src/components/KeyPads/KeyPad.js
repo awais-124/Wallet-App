@@ -1,41 +1,40 @@
-import {StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, TouchableWithoutFeedback, View} from 'react-native';
 
 import Keys from './Keys';
 
 import THEME from '../../styles/theme';
+import ICONS from '../../helpers/icons';
+import CONSTANTS from '../../helpers/CONSTANTS';
 
-const KeyPad = ({style, data, setData}) => {
-  const handleKeyPress = key => {
-    console.log('KEY PRESSED : ', key);
-    if (key === 'x') {
-      setData(prev => (prev.length !== 0 ? prev?.slice(0, -1) : prev));
-    } else {
-      setData(prev => (prev.length < 4 ? prev + key : prev));
-    }
-    console.log('OTP : ', data);
+import {screen_width} from '../../utils/Dimensions';
+
+const KeyPad = ({style, onKeyStroke}) => {
+  const generateKeypad = (item, index) => (
+    <Keys
+      num={item.num}
+      alpha={item.alpha}
+      key={index}
+      onKeyPressed={onKeyStroke}
+    />
+  );
+
+  const DeleteKey = () => {
+    return (
+      <TouchableWithoutFeedback onPress={() => onKeyStroke('x')}>
+        <View style={[THEME.row, styles.delete]}>
+          <Image source={ICONS.DELETE} />
+        </View>
+      </TouchableWithoutFeedback>
+    );
   };
 
   return (
     <View style={[style, THEME.col, styles.keypad]}>
-      <View style={[THEME.row, styles.row]}>
-        <Keys num="1" onKeyPressed={handleKeyPress} />
-        <Keys num="2" alpha="ABC" onKeyPressed={handleKeyPress} />
-        <Keys num="3" alpha="DEF" onKeyPressed={handleKeyPress} />
-      </View>
-      <View style={[THEME.row, styles.row]}>
-        <Keys num="4" alpha="GHI" onKeyPressed={handleKeyPress} />
-        <Keys num="5" alpha="JKL" onKeyPressed={handleKeyPress} />
-        <Keys num="6" alpha="MNO" onKeyPressed={handleKeyPress} />
-      </View>
-      <View style={[THEME.row, styles.row]}>
-        <Keys num="7" alpha="PQRS" onKeyPressed={handleKeyPress} />
-        <Keys num="8" alpha="TUV" onKeyPressed={handleKeyPress} />
-        <Keys num="9" alpha="WXYZ" onKeyPressed={handleKeyPress} />
-      </View>
-      <View style={[THEME.row, styles.row]}>
-        <Keys empty={true} isDelete={true} />
-        <Keys num="0" onKeyPressed={handleKeyPress} />
-        <Keys isDelete={true} onKeyPressed={handleKeyPress} num="x" />
+      {CONSTANTS.KeyPad.map(generateKeypad)}
+      <View style={[THEME.row, styles.lastRow]}>
+        <View style={styles.cell}></View>
+        <Keys num="0" onKeyPressed={onKeyStroke} />
+        <DeleteKey />
       </View>
     </View>
   );
@@ -45,10 +44,26 @@ export default KeyPad;
 
 const styles = StyleSheet.create({
   keypad: {
-    gap: 8,
-    paddingTop: 10,
-    paddingBottom: 30,
+    padding: 10,
+    flexWrap: 'wrap',
+    ...THEME.justifyCentered,
+    ...THEME.row,
     backgroundColor: '#CCCED3',
+    gap: 8,
   },
-  row: {justifyContent: 'center', gap: 8, height: '22%'},
+  lastRow: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+  },
+  delete: {
+    ...THEME.centered,
+    backgroundColor: '#CCCED3',
+    width: screen_width * 0.3,
+    height: '100%',
+    padding: 10,
+  },
+  cell: {
+    width: screen_width * 0.3,
+  },
 });

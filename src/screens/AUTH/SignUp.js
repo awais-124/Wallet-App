@@ -10,19 +10,19 @@ import {
 
 import DatePicker from 'react-native-date-picker';
 
-import THEME from '../styles/theme';
-import COLORS from '../styles/colors';
-import FONTS from '../styles/typography';
-import ASSETS from '../helpers/imports';
-import CONSTANTS from '../helpers/CONSTANTS';
+import THEME from '../../styles/theme';
+import COLORS from '../../styles/colors';
+import FONTS from '../../styles/typography';
+import ASSETS from '../../helpers/imports';
+import CONSTANTS from '../../helpers/CONSTANTS';
 
-import StatusBarBlue from '../components/StatusBar/CustomStatusBar';
-import LabelledInput from '../components/Inputs/LabelledInput';
-import BtnSimple from '../components/Buttons/BtnSimple';
-import DateInput from '../components/Inputs/DateInput';
-import Logo from '../components/Logo';
+import StatusBarBlue from '../../components/StatusBar/CustomStatusBar';
+import LabelledInput from '../../components/Inputs/LabelledInput';
+import BtnSimple from '../../components/Buttons/BtnSimple';
+import DateInput from '../../components/Inputs/DateInput';
+import Logo from '../../components/Logo';
 
-import {screen_width} from '../utils/Dimensions';
+import {screen_width} from '../../utils/Dimensions';
 
 const SignUp = ({navigation}) => {
   const [date, setDate] = useState(new Date());

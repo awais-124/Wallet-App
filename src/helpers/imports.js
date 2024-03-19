@@ -7,8 +7,13 @@ import TopBar from '../assets/Images/top_bar.png';
 import Check from '../assets/Images/check.png';
 import SignUpBack from '../assets/Background-Images/signUp-back.png';
 import SignInBack from '../assets/Background-Images/signIn-back.png';
+import HomeBack from '../assets/Background-Images/home-back.png';
+import DummySmall from '../assets/Images/dummySmall.png';
+import DummyLarge from '../assets/Images/dummyLarge.png';
 
 const ASSETS = {
+  DummyLarge,
+  DummySmall,
   logo,
   whiteLogo,
   triangleSmall,
@@ -18,6 +23,7 @@ const ASSETS = {
   Check,
   SignUpBack,
   SignInBack,
+  HomeBack,
 };
 
 export default ASSETS;

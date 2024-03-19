@@ -2,15 +2,15 @@ import {useEffect} from 'react';
 
 import {StyleSheet, Text, ImageBackground} from 'react-native';
 
-import CustomStatusBar from '../components/StatusBar/CustomStatusBar';
-import Logo from '../components/Logo';
+import CustomStatusBar from '../../components/StatusBar/CustomStatusBar';
+import Logo from '../../components/Logo';
 
-import ASSETS from '../helpers/imports';
-import COLORS from '../styles/colors';
-import FONTS from '../styles/typography';
-import THEME from '../styles/theme';
+import ASSETS from '../../helpers/imports';
+import COLORS from '../../styles/colors';
+import FONTS from '../../styles/typography';
+import THEME from '../../styles/theme';
 
-import {screen_height} from '../utils/Dimensions';
+import {screen_height} from '../../utils/Dimensions';
 
 const Splash = ({navigation}) => {
   const navigateToHome = () => navigation.replace('SignIn');

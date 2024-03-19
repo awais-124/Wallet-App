@@ -2,18 +2,18 @@ import React, {useEffect, useState} from 'react';
 
 import {StyleSheet, Text, View} from 'react-native';
 
-import CustomStatusBar from '../components/StatusBar/CustomStatusBar';
-import NumericKey from '../components/KeyPads/NumericKey';
-import Overlay from '../components/Alerts/Overlay';
-import Danger from '../components/Alerts/Danger';
-import Modal from '../components/Alerts/Modal';
+import CustomStatusBar from '../../components/StatusBar/CustomStatusBar';
+import NumericKey from '../../components/KeyPads/NumericKey';
+import Overlay from '../../components/Alerts/Overlay';
+import Danger from '../../components/Alerts/Danger';
+import Modal from '../../components/Alerts/Modal';
 
-import COLORS from '../styles/colors';
-import THEME from '../styles/theme';
-import FONTS from '../styles/typography';
-import CONSTANTS from '../helpers/CONSTANTS';
+import COLORS from '../../styles/colors';
+import THEME from '../../styles/theme';
+import FONTS from '../../styles/typography';
+import CONSTANTS from '../../helpers/CONSTANTS';
 
-import {screen_width, screen_height} from '../utils/Dimensions';
+import {screen_width, screen_height} from '../../utils/Dimensions';
 
 const SignUpPin = ({navigation}) => {
   const [pin, setPin] = useState('');
@@ -28,7 +28,9 @@ const SignUpPin = ({navigation}) => {
 
   useEffect(() => {
     let timer = 0;
-    if (pin.length < 6) return;
+    if (pin.length < 6) {
+      return;
+    }
     if (pin < 555555) {
       setIsPinValid(false);
       timer = setTimeout(() => {
@@ -46,8 +48,9 @@ const SignUpPin = ({navigation}) => {
   const handlePin = key => {
     if (key === 'x') {
       setPin(prev => (prev.length !== 0 ? prev.slice(0, -1) : prev));
-    } else if (key === 'CL') setPin('');
-    else {
+    } else if (key === 'CL') {
+      setPin('');
+    } else {
       setPin(prev =>
         prev.length >= 6 && !isModalShown ? prev : (prev += key),
       );
@@ -58,9 +61,7 @@ const SignUpPin = ({navigation}) => {
   const {white: w, darkBlue: db} = COLORS.secondary;
   const bg = index => (index < pin.length ? w : db);
   const generateCircles = (_, index) => (
-    <View
-      style={[{backgroundColor: bg(index)}, styles.circle]}
-      key={index}></View>
+    <View style={[{backgroundColor: bg(index)}, styles.circle]} key={index} />
   );
 
   const generateKeyPad = (val, index) => (

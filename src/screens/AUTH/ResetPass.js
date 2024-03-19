@@ -9,19 +9,19 @@ import {
   ScrollView,
 } from 'react-native';
 
-import Modal from '../components/Alerts/Modal';
-import Overlay from '../components/Alerts/Overlay';
-import BtnSimple from '../components/Buttons/BtnSimple';
-import LabelledInput from '../components/Inputs/LabelledInput';
-import CustomStatusBar from '../components/StatusBar/CustomStatusBar';
+import Modal from '../../components/Alerts/Modal';
+import Overlay from '../../components/Alerts/Overlay';
+import BtnSimple from '../../components/Buttons/BtnSimple';
+import LabelledInput from '../../components/Inputs/LabelledInput';
+import CustomStatusBar from '../../components/StatusBar/CustomStatusBar';
 
-import CONSTANTS from '../helpers/CONSTANTS';
-import ICONS from '../helpers/icons';
-import FONTS from '../styles/typography';
-import COLORS from '../styles/colors';
-import THEME from '../styles/theme';
+import CONSTANTS from '../../helpers/CONSTANTS';
+import ICONS from '../../helpers/icons';
+import FONTS from '../../styles/typography';
+import COLORS from '../../styles/colors';
+import THEME from '../../styles/theme';
 
-import {screen_height} from '../utils/Dimensions';
+import {screen_height} from '../../utils/Dimensions';
 
 const ResetPass = ({navigation}) => {
   const scrollViewRef = useRef(null);

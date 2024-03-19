@@ -10,27 +10,27 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 
-import CONSTANTS from '../helpers/CONSTANTS';
-import ASSETS from '../helpers/imports';
-import ICONS from '../helpers/icons';
-import COLORS from '../styles/colors';
-import FONTS from '../styles/typography';
-import THEME from '../styles/theme';
+import CONSTANTS from '../../helpers/CONSTANTS';
+import ASSETS from '../../helpers/imports';
+import ICONS from '../../helpers/icons';
+import COLORS from '../../styles/colors';
+import FONTS from '../../styles/typography';
+import THEME from '../../styles/theme';
 
-import Modal from '../components/Alerts/Modal';
-import Overlay from '../components/Alerts/Overlay';
-import BtnSimple from '../components/Buttons/BtnSimple';
-import SimpleInput from '../components/Inputs/SimpleInput';
-import CustomStatusBar from '../components/StatusBar/CustomStatusBar';
+import Modal from '../../components/Alerts/Modal';
+import Overlay from '../../components/Alerts/Overlay';
+import BtnSimple from '../../components/Buttons/BtnSimple';
+import SimpleInput from '../../components/Inputs/SimpleInput';
+import CustomStatusBar from '../../components/StatusBar/CustomStatusBar';
 
-import {screen_height, screen_width} from '../utils/Dimensions';
+import {screen_height, screen_width} from '../../utils/Dimensions';
 
 const ForgotPass = ({navigation}) => {
   const [emailIsValid, setEmailIsValid] = useState(false);
   const [email, setEmail] = useState('');
   const [isModalShown, setIsModalShown] = useState(false);
 
-  const goToSignIn = () => navigation.navigate('SignIn');
+  const goBack = () => navigation.goBack();
   const isValidEmail = email => CONSTANTS.emailRegex?.test(email);
   const hideModal = () => setIsModalShown(false);
   const goToResetPassScreen = () => {
@@ -66,7 +66,7 @@ const ForgotPass = ({navigation}) => {
         />
       )}
       <View style={styles.header}>
-        <TouchableWithoutFeedback onPress={goToSignIn}>
+        <TouchableWithoutFeedback onPress={goBack}>
           <Image source={ASSETS.TopBar} style={styles.topBar} />
         </TouchableWithoutFeedback>
       </View>

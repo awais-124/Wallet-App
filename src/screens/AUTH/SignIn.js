@@ -9,17 +9,17 @@ import {
   ImageBackground,
 } from 'react-native';
 
-import Logo from '../components/Logo';
-import BtnSimple from '../components/Buttons/BtnSimple';
-import LabelledInput from '../components/Inputs/LabelledInput';
-import CustomStatusBar from '../components/StatusBar/CustomStatusBar';
+import Logo from '../../components/Logo';
+import BtnSimple from '../../components/Buttons/BtnSimple';
+import LabelledInput from '../../components/Inputs/LabelledInput';
+import CustomStatusBar from '../../components/StatusBar/CustomStatusBar';
 
-import ASSETS from '../helpers/imports';
-import COLORS from '../styles/colors';
-import FONTS from '../styles/typography';
-import THEME from '../styles/theme';
+import ASSETS from '../../helpers/imports';
+import COLORS from '../../styles/colors';
+import FONTS from '../../styles/typography';
+import THEME from '../../styles/theme';
 
-import {screen_height, screen_width} from '../utils/Dimensions';
+import {screen_height, screen_width} from '../../utils/Dimensions';
 
 const {primary: p, secondary: s} = COLORS;
 

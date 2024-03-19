@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 import {View, StyleSheet, TextInput, TouchableOpacity} from 'react-native';
 
@@ -9,9 +9,17 @@ import FONTS from '../../styles/typography';
 import {screen_height, screen_width} from '../../utils/Dimensions';
 
 const FOCUS = [1, 0, 0, 0];
-const OTPInput = ({data, style, maxLength}) => {
+const OTPInput = ({data, style, maxLength, onCellPressed}) => {
+  const cellRef = useRef(null);
   const [isFocused, setIsFocused] = useState(FOCUS);
   const boxArray = Array(maxLength).fill(0);
+
+  const handleCellPress = index => {
+    if (index < data.length + 1) {
+      onCellPressed(index);
+      setIsFocused(prevIsFocused => prevIsFocused.map((_, i) => i === index));
+    }
+  };
 
   useEffect(() => {
     const nextIndex = data.length;
@@ -23,9 +31,12 @@ const OTPInput = ({data, style, maxLength}) => {
 
     return (
       <TouchableOpacity
+        activeOpacity={0.2}
         style={[styles.cell, isFocused[index] && styles.focus]}
         key={index}
-        disabled>
+        disabled={!!isFocused[index]}
+        onPress={() => handleCellPress(index)}
+        ref={cellRef}>
         <TextInput value={digit} style={styles.otp} editable={false} />
       </TouchableOpacity>
     );

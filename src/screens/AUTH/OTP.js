@@ -2,29 +2,36 @@ import React, {useState, useEffect} from 'react';
 
 import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 
-import ICONS from '../helpers/icons';
-import COLORS from '../styles/colors';
-import THEME from '../styles/theme';
-import FONTS from '../styles/typography';
+import ICONS from '../../helpers/icons';
+import COLORS from '../../styles/colors';
+import THEME from '../../styles/theme';
+import FONTS from '../../styles/typography';
 
-import CustomStatusBar from '../components/StatusBar/CustomStatusBar';
-import KeyPad from '../components/KeyPads/KeyPad';
-import OTPInput from '../components/Inputs/OTPInput';
-import Danger from '../components/Alerts/Danger';
+import KeyPad from '../../components/KeyPads/KeyPad';
+import Danger from '../../components/Alerts/Danger';
+import OTPInput from '../../components/Inputs/OTPInput';
+import CustomStatusBar from '../../components/StatusBar/CustomStatusBar';
 
-import {screen_height, screen_width} from '../utils/Dimensions';
+import {screen_height, screen_width} from '../../utils/Dimensions';
 
+const MAX_LENGTH = 4;
 const OTP = ({navigation}) => {
-  const goToSignInScreen = () => navigation.navigate('SignIn');
+  const goBack = () => navigation.goBack();
+  const canGoBack = navigation.canGoBack();
+
   const [otp, setOtp] = useState('');
   const [isOtpValid, setIsOtpValid] = useState(false);
 
-  const clearInput = () => setOtp(prev => (prev.length === 4 ? '' : prev));
+  let currentIndex = null;
+  const getIndex = i => (currentIndex = i);
   const toggleALert = () => setIsOtpValid(prev => !prev);
+  const clearInput = () =>
+    setOtp(prev => (prev.length === MAX_LENGTH ? '' : prev));
 
   useEffect(() => {
     let timer = 0;
-    if (otp.length !== 4) return;
+    if (otp.length !== MAX_LENGTH) return;
+
     if (+otp > 5000) {
       timer = setTimeout(() => {
         navigation.navigate('ForgotPass');
@@ -40,12 +47,34 @@ const OTP = ({navigation}) => {
     return () => clearTimeout(timer);
   }, [otp]);
 
+  const handleKeyStroke = key => {
+    console.log('KEY PRESSED : ', key);
+    if (currentIndex === null) {
+      if (key === 'x') {
+        setOtp(prev => (prev.length !== 0 ? prev?.slice(0, -1) : prev));
+      } else {
+        setOtp(prev => (prev.length < 4 ? prev + key : prev));
+      }
+    } else {
+      setOtp(prev => {
+        const otpArray = prev.split('');
+        otpArray[currentIndex] = key === 'x' ? '' : key;
+        return otpArray.join('');
+      });
+      currentIndex = null;
+    }
+    console.log('OTP : ', otp);
+  };
+
   return (
     <View style={[THEME.fill, styles.container]}>
       <CustomStatusBar />
       {isOtpValid && <Danger title="The OTP Code is Invalid." />}
       <View style={styles.back}>
-        <TouchableOpacity onPress={goToSignInScreen} style={styles.icon}>
+        <TouchableOpacity
+          onPress={goBack}
+          style={styles.icon}
+          disabled={!canGoBack}>
           <Image source={ICONS.ARROW_LEFT} />
         </TouchableOpacity>
       </View>
@@ -59,8 +88,13 @@ const OTP = ({navigation}) => {
         </Text>
         <Text style={[FONTS.bold.pt16, styles.message]}>08768262427</Text>
       </View>
-      <OTPInput data={otp} maxLength={4} />
-      <KeyPad style={styles.keypad} dataa={otp} setData={setOtp} />
+      <OTPInput data={otp} maxLength={MAX_LENGTH} onCellPressed={getIndex} />
+      <KeyPad
+        style={styles.keypad}
+        data={otp}
+        setData={setOtp}
+        onKeyStroke={handleKeyStroke}
+      />
     </View>
   );
 };
