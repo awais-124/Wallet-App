@@ -37,4 +37,5 @@ const styles = StyleSheet.create({
     width: screen_width * 0.75,
     marginHorizontal: 10,
   },
+  textBox: {gap: 5},
 });

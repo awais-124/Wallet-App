@@ -1,5 +1,3 @@
-import {useState} from 'react';
-
 import {
   Image,
   StyleSheet,
@@ -9,7 +7,7 @@ import {
   View,
 } from 'react-native';
 
-import {screen_height, screen_width} from '../../utils/Dimensions';
+import {screen_width} from '../../utils/Dimensions';
 
 import FONTS from '../../styles/typography';
 import COLORS from '../../styles/colors';
@@ -25,23 +23,25 @@ const DateInput = ({
   disabled = false,
 }) => {
   return (
-    <View style={[THEME.row, styles.container]}>
-      <View style={[THEME.col, styles.inputBox]}>
-        <Text
-          style={[FONTS.regular.pt12, {color: labelColor, ...styles.label}]}>
-          {label}
-        </Text>
-        <TextInput
-          style={[FONTS.semibold.pt14, styles.input]}
-          value={data}
-          onChangeText={onChange}
-          editable={disabled}
-        />
+    <TouchableOpacity onPress={onClick} activeOpacity={0.6}>
+      <View style={[THEME.row, styles.container]}>
+        <View style={[THEME.col, styles.inputBox]}>
+          <Text
+            style={[FONTS.regular.pt12, {color: labelColor, ...styles.label}]}>
+            {label}
+          </Text>
+          <TextInput
+            style={[FONTS.semibold.pt14, styles.input]}
+            value={data}
+            onChangeText={onChange}
+            editable={disabled}
+          />
+        </View>
+        <TouchableOpacity onPress={onClick} style={styles.icon}>
+          <Image source={ICONS.CALENDAR} />
+        </TouchableOpacity>
       </View>
-      <TouchableOpacity onPress={onClick} style={styles.icon}>
-        <Image source={ICONS.CALENDAR} />
-      </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -50,8 +50,7 @@ export default DateInput;
 const styles = StyleSheet.create({
   row: {justifyContent: 'space-between'},
   container: {
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    ...THEME.justifyCentered,
     borderWidth: 1,
     borderColor: COLORS.secondary.greyTwo,
     borderRadius: 10,

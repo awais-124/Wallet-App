@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
 
 import {
   StyleSheet,
@@ -7,6 +8,7 @@ import {
   ImageBackground,
   TouchableWithoutFeedback,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 
 import ICONS from '../../helpers/icons';
@@ -18,8 +20,11 @@ import COLORS from '../../styles/colors';
 const {primary: p, secondary: s} = COLORS;
 
 const Header = () => {
+  const navigation = useNavigation();
   const [showBalance, setShowBalance] = useState(false);
+
   const toggleEye = () => setShowBalance(prev => !prev);
+  const goToNotifications = () => navigation.navigate('Notifications');
 
   return (
     <ImageBackground
@@ -39,7 +44,9 @@ const Header = () => {
             </TouchableWithoutFeedback>
           </View>
         </View>
-        <Image source={ICONS.BELL} />
+        <TouchableOpacity activeOpacity={0.7} onPress={goToNotifications}>
+          <Image source={ICONS.BELL} />
+        </TouchableOpacity>
       </View>
     </ImageBackground>
   );

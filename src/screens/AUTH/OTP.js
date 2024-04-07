@@ -34,7 +34,7 @@ const OTP = ({navigation}) => {
 
     if (+otp > 5000) {
       timer = setTimeout(() => {
-        navigation.navigate('ForgotPass');
+        navigation.navigate('Home');
         setOtp('');
       }, 1000);
     } else {
@@ -49,16 +49,23 @@ const OTP = ({navigation}) => {
 
   const handleKeyStroke = key => {
     console.log('KEY PRESSED : ', key);
+    if (otp.includes(' ')) {
+      setOtp(prev => {
+        const array = prev.split('');
+        array.forEach(val => (val === ' ' && key !== 'x' ? key : val));
+        return array.join('');
+      });
+    }
     if (currentIndex === null) {
       if (key === 'x') {
         setOtp(prev => (prev.length !== 0 ? prev?.slice(0, -1) : prev));
       } else {
-        setOtp(prev => (prev.length < 4 ? prev + key : prev));
+        setOtp(prev => (prev.length < MAX_LENGTH ? prev + key : prev));
       }
     } else {
       setOtp(prev => {
         const otpArray = prev.split('');
-        otpArray[currentIndex] = key === 'x' ? '' : key;
+        otpArray[currentIndex] = key === 'x' ? ' ' : key;
         return otpArray.join('');
       });
       currentIndex = null;

@@ -2,8 +2,8 @@
 #
 .DS_Store
 
-.colors
-.commands
+colors.txt
+commands.txt
 # Xcode
 #
 build/

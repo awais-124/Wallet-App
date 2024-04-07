@@ -25,7 +25,7 @@ const Splash = ({navigation}) => {
       <CustomStatusBar />
       <Logo style={THEME.centeredFill} />
       <Text style={[FONTS.semibold.pt14, styles.baseText]}>
-        Your best choice is for e-wallet
+        Your best choice for e-wallet
       </Text>
     </ImageBackground>
   );

@@ -8,6 +8,7 @@ import {
   View,
   Keyboard,
   TouchableWithoutFeedback,
+  TouchableOpacity,
 } from 'react-native';
 
 import CONSTANTS from '../../helpers/CONSTANTS';
@@ -21,6 +22,7 @@ import Modal from '../../components/Alerts/Modal';
 import Overlay from '../../components/Alerts/Overlay';
 import BtnSimple from '../../components/Buttons/BtnSimple';
 import SimpleInput from '../../components/Inputs/SimpleInput';
+import ScreenWrapper from '../../components/Wrappers/ScreenWrapper';
 import CustomStatusBar from '../../components/StatusBar/CustomStatusBar';
 
 import {screen_height, screen_width} from '../../utils/Dimensions';
@@ -33,6 +35,7 @@ const ForgotPass = ({navigation}) => {
   const goBack = () => navigation.goBack();
   const isValidEmail = email => CONSTANTS.emailRegex?.test(email);
   const hideModal = () => setIsModalShown(false);
+
   const goToResetPassScreen = () => {
     navigation.navigate('ResetPass');
     hideModal();
@@ -55,48 +58,50 @@ const ForgotPass = ({navigation}) => {
   const color = emailIsValid ? s.white : s.greyTwo;
 
   return (
-    <KeyboardAvoidingView style={[THEME.centeredFill, styles.container]}>
-      <CustomStatusBar />
-      {isModalShown && <Overlay onClick={hideModal} />}
-      {isModalShown && (
-        <Modal
-          style={styles.modal}
-          onPress={goToResetPassScreen}
-          message={CONSTANTS.ModalMessage.forgotPass}
-        />
-      )}
-      <View style={styles.header}>
-        <TouchableWithoutFeedback onPress={goBack}>
-          <Image source={ASSETS.TopBar} style={styles.topBar} />
-        </TouchableWithoutFeedback>
-      </View>
-      <View style={styles.body}>
-        <Image source={ICONS.MESSAGE_BOX} style={styles.icon} />
-        <View style={styles.textBox}>
-          <Text style={[FONTS.medium.pt20, styles.black]}>
-            Enter Your Email Address
-          </Text>
-          <Text style={[FONTS.regular.pt14, styles.black]}>
-            We'll send you a link to reset your password.
-          </Text>
+    <ScreenWrapper>
+      <KeyboardAvoidingView style={[THEME.centeredFill, styles.container]}>
+        <CustomStatusBar />
+        {isModalShown && <Overlay onClick={hideModal} />}
+        {isModalShown && (
+          <Modal
+            style={styles.modal}
+            onPress={goToResetPassScreen}
+            message={CONSTANTS.ModalMessage.forgotPass}
+          />
+        )}
+        <View style={styles.header}>
+          <TouchableWithoutFeedback onPress={goBack}>
+            <Image source={ASSETS.TopBar} style={styles.topBar} />
+          </TouchableWithoutFeedback>
         </View>
-        <SimpleInput
-          placeHolder="Enter Your Email Address"
-          data={email}
-          phColor={COLORS.secondary.greyTwo}
-          onChange={emailCheckHandler}
-        />
-      </View>
-      <View style={styles.footer}>
-        <BtnSimple
-          text="Reset"
-          back={backgroundColor}
-          color={color}
-          isDisabled={!emailIsValid}
-          onClick={showModal}
-        />
-      </View>
-    </KeyboardAvoidingView>
+        <View style={styles.body}>
+          <Image source={ICONS.MESSAGE_BOX} style={styles.icon} />
+          <View style={styles.textBox}>
+            <Text style={[FONTS.medium.pt20, styles.black]}>
+              Enter Your Email Address
+            </Text>
+            <Text style={[FONTS.regular.pt14, styles.black]}>
+              We'll send you a link to reset your password.
+            </Text>
+          </View>
+          <SimpleInput
+            placeHolder="Enter Your Email Address"
+            data={email}
+            phColor={COLORS.secondary.greyTwo}
+            onChange={emailCheckHandler}
+          />
+        </View>
+        <View style={styles.footer}>
+          <BtnSimple
+            text="Reset"
+            back={backgroundColor}
+            color={color}
+            isDisabled={!emailIsValid}
+            onClick={showModal}
+          />
+        </View>
+      </KeyboardAvoidingView>
+    </ScreenWrapper>
   );
 };
 

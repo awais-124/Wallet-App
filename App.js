@@ -9,6 +9,10 @@ import ResetPass from './src/screens/AUTH/ResetPass';
 import SignUp from './src/screens/AUTH/SignUp';
 import SignUpPin from './src/screens/AUTH/SignUpPin';
 import Home from './src/screens/HOME/Home';
+import Notifications from './src/screens/HOME/Notifications';
+import ScanBarcode from './src/screens/PAYMENT/ScanBarcode';
+import MyBarcode from './src/screens/PAYMENT/MyBarcode';
+import Checkout from './src/screens/PAYMENT/Checkout';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +20,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="OTP"
+        initialRouteName="Checkout"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="SignIn" component={SignInScreen} />
@@ -26,6 +30,10 @@ export default function App() {
         <Stack.Screen name="SignUp" component={SignUp} />
         <Stack.Screen name="SignUpPin" component={SignUpPin} />
         <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Notifications" component={Notifications} />
+        <Stack.Screen name="ScanBarcode" component={ScanBarcode} />
+        <Stack.Screen name="MyBarcode" component={MyBarcode} />
+        <Stack.Screen name="Checkout" component={Checkout} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -31,6 +31,14 @@ const NumericButtons = [
   'x',
 ];
 
+const signUpData = {
+  name: '',
+  phone: '',
+  email: '',
+  password: '',
+  birthday: '',
+};
+
 const ModalMessage = {
   forgotPass: "We've sent you a link to reset your password. Check your email!",
   resetPass: 'Yay! Your new password has been saved.',
@@ -105,6 +113,29 @@ const Articles = [
   },
 ];
 
+const BottomNav = [
+  {
+    title: 'Home',
+    icon: ICONS.HOME,
+  },
+  {
+    title: 'CashFlow',
+    icon: ICONS.CASHFLOW,
+  },
+  {
+    title: '',
+    icon: null,
+  },
+  {
+    title: 'Message',
+    icon: ICONS.MESSAGE,
+  },
+  {
+    title: 'Profile',
+    icon: ICONS.PROFILE,
+  },
+];
+
 const QuickActions = [
   {
     id: 1,
@@ -123,7 +154,87 @@ const QuickActions = [
   },
 ];
 
+const Notifs = [
+  {
+    detail: 'Promo 40% Discount for special day in the long weekend',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF1,
+  },
+  {
+    detail:
+      'The sistem will have a maintainance for a several hour in this day',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF2,
+  },
+  {
+    detail:
+      'The sistem will have a maintainance for a several hour in this day',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF3,
+  },
+  {
+    detail: 'Promo 40% Discount for special day in the long weekend',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF1,
+  },
+  {
+    detail:
+      'The sistem will have a maintainance for a several hour in this day',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF2,
+  },
+  {
+    detail:
+      'The sistem will have a maintainance for a several hour in this day',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF3,
+  },
+  {
+    detail: 'Promo 40% Discount for special day in the long weekend',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF1,
+  },
+  {
+    detail:
+      'The sistem will have a maintainance for a several hour in this day',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF2,
+  },
+  {
+    detail:
+      'The sistem will have a maintainance for a several hour in this day',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF3,
+  },
+  {
+    detail: 'Promo 40% Discount for special day in the long weekend',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF1,
+  },
+  {
+    detail:
+      'The sistem will have a maintainance for a several hour in this day',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF2,
+  },
+  {
+    detail:
+      'The sistem will have a maintainance for a several hour in this day',
+    time: '6 hour ago',
+    icon: ICONS.NOTIF3,
+  },
+];
+
+const CheckoutCards = [
+  {icon: ICONS.MENU, text: 'Category', title: 'Food & Drink'},
+  {icon: ICONS.SHOP, text: 'Store', title: 'Hajimoto Store'},
+  {icon: ICONS.CHART, text: 'Balance', title: '$ 5000.00'},
+];
+
 const CONSTANTS = {
+  CheckoutCards,
+  BottomNav,
+  Notifs,
   QuickActions,
   Articles,
   Card,
@@ -134,6 +245,7 @@ const CONSTANTS = {
   SignUpScreenBtnLabels,
   ModalMessage,
   HomeShortcut,
+  signUpData,
 };
 
 export default CONSTANTS;

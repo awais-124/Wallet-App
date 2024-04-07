@@ -1,22 +1,46 @@
-import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {useRef} from 'react';
+
+import {
+  Image,
+  PanResponder,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 
 import THEME from '../../styles/theme';
-import FONTS from '../../styles/typography';
 import COLORS from '../../styles/colors';
 import CONSTANTS from '../../helpers/CONSTANTS';
+import ICONS from '../../helpers/icons';
 
 import Header from '../../components/Home/Header';
+import HorizantalList from '../../components/Home/HorizantalList';
 import CustomStatusBar from '../../components/StatusBar/CustomStatusBar';
 import ComponentGenerator from '../../components/Home/ComponentGenerator';
 
 import {screen_width} from '../../utils/Dimensions';
-import HorizantalList from '../../components/Home/HorizantalList';
-
 const {primary: p, secondary: s} = COLORS;
 
-const Home = () => {
+const Home = ({navigation}) => {
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onPanResponderMove: (_, gestureState) => {
+        if (gestureState.dx < -50) {
+          navigation.navigate('SignIn');
+        }
+      },
+    }),
+  ).current;
+
+  const gotoScanCode = () => navigation.navigate('ScanBarcode');
+
   return (
-    <ScrollView contentContainerStyle={{flexGrow: 1}}>
+    <ScrollView
+      contentContainerStyle={{flexGrow: 1}}
+      {...panResponder.panHandlers}>
       <CustomStatusBar />
       <View style={[THEME.fill, styles.container]}>
         <Header />
@@ -36,9 +60,17 @@ const Home = () => {
           content={CONSTANTS.Articles}
           generator={ComponentGenerator.renderArticle}
           style={styles.articles}
-          title="Finacial Articles"
+          title="Financial Articles"
         />
-        <View style={styles.footer}></View>
+        <View style={styles.footer}>
+          {CONSTANTS.BottomNav.map(ComponentGenerator.renderTab)}
+        </View>
+        <TouchableWithoutFeedback onPress={gotoScanCode}>
+          <View style={styles.pay}>
+            <Image source={ICONS.PAY} />
+            <Text style={styles.payText}>Pay</Text>
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     </ScrollView>
   );
@@ -73,5 +105,24 @@ const styles = StyleSheet.create({
   },
   cards: {gap: 20},
   articles: {gap: 20},
-  footer: {},
+  footer: {
+    ...THEME.row,
+    ...THEME.justifyCentered,
+    paddingHorizontal: 10,
+    paddingBottom: 20,
+  },
+  pay: {
+    backgroundColor: COLORS.primary.blue,
+    ...THEME.centered,
+    width: screen_width * 0.24,
+    aspectRatio: 1,
+    padding: 20,
+    borderRadius: 50,
+    elevation: 20,
+    zIndex: 999,
+    position: 'absolute',
+    left: screen_width * 0.38,
+    bottom: 50,
+  },
+  payText: {color: COLORS.secondary.white},
 });

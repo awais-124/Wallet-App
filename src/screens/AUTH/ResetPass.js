@@ -27,15 +27,21 @@ const ResetPass = ({navigation}) => {
   const scrollViewRef = useRef(null);
   const [isModalShown, setIsModalShown] = useState(false);
   const [password, setPassword] = useState('');
+  const [confirmPass, setConfirmPass] = useState('');
 
-  const isPasswordEmpty = password.length === 0;
+  const notSame = password !== confirmPass;
+  const tooShort = password.length < 6;
+  const btnDisabled = notSame || tooShort;
 
   const scrollToEnd = () => {
     if (scrollViewRef.current)
       scrollViewRef.current.scrollToEnd({animated: true});
     else console.log('CALLLED');
   };
+
   const passHandler = value => setPassword(value);
+  const confirmPassHandler = value => setConfirmPass(value);
+
   const showModal = () => {
     setIsModalShown(true);
     Keyboard.dismiss();
@@ -43,12 +49,13 @@ const ResetPass = ({navigation}) => {
   const hideModal = () => {
     setIsModalShown(false);
     setPassword('');
+    setConfirmPass('');
     navigation.navigate('SignUp');
   };
 
   const {primary: p, secondary: s} = COLORS;
-  const backgroundColor = !isPasswordEmpty ? p.orange : s.greyFour;
-  const color = !isPasswordEmpty ? s.white : s.greyTwo;
+  const backgroundColor = !btnDisabled ? p.orange : s.greyFour;
+  const color = !btnDisabled ? s.white : s.greyTwo;
 
   return (
     <ScrollView
@@ -88,9 +95,9 @@ const ResetPass = ({navigation}) => {
             <LabelledInput
               label="Confirm New Password"
               isPassword={true}
-              data={password}
+              data={confirmPass}
               labelColor={s.black}
-              onChange={passHandler}
+              onChange={confirmPassHandler}
               onFocused={scrollToEnd}
             />
           </View>
@@ -101,7 +108,7 @@ const ResetPass = ({navigation}) => {
             back={backgroundColor}
             color={color}
             onClick={showModal}
-            isDisabled={isPasswordEmpty}
+            isDisabled={btnDisabled}
           />
         </View>
       </KeyboardAvoidingView>

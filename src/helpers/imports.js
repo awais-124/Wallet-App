@@ -10,8 +10,20 @@ import SignInBack from '../assets/Background-Images/signIn-back.png';
 import HomeBack from '../assets/Background-Images/home-back.png';
 import DummySmall from '../assets/Images/dummySmall.png';
 import DummyLarge from '../assets/Images/dummyLarge.png';
+import ScanBlue from '../assets/Background-Images/scanner-blue-shade.png';
+import ScanBlack from '../assets/Background-Images/scanner-black-shade.png';
+import ScanBack from '../assets/Background-Images/scan-back.png';
+import PlaneBlue from '../assets/Background-Images/planeBlue.png';
+import BarCode from '../assets/Images/Barcode.png';
+import CheckoutBack from '../assets/Background-Images/checkout-back.png';
 
 const ASSETS = {
+  CheckoutBack,
+  BarCode,
+  PlaneBlue,
+  ScanBack,
+  ScanBlack,
+  ScanBlue,
   DummyLarge,
   DummySmall,
   logo,

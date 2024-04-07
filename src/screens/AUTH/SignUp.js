@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {
   ImageBackground,
   TouchableOpacity,
@@ -6,6 +6,8 @@ import {
   StyleSheet,
   Text,
   View,
+  Alert,
+  KeyboardAvoidingView,
 } from 'react-native';
 
 import DatePicker from 'react-native-date-picker';
@@ -14,9 +16,10 @@ import THEME from '../../styles/theme';
 import COLORS from '../../styles/colors';
 import FONTS from '../../styles/typography';
 import ASSETS from '../../helpers/imports';
-import CONSTANTS from '../../helpers/CONSTANTS';
+import HANDLERS from '../../helpers/handlers';
 
-import StatusBarBlue from '../../components/StatusBar/CustomStatusBar';
+import CustomStatusBar from '../../components/StatusBar/CustomStatusBar';
+import ScreenWrapper from '../../components/Wrappers/ScreenWrapper';
 import LabelledInput from '../../components/Inputs/LabelledInput';
 import BtnSimple from '../../components/Buttons/BtnSimple';
 import DateInput from '../../components/Inputs/DateInput';
@@ -25,67 +28,120 @@ import Logo from '../../components/Logo';
 import {screen_width} from '../../utils/Dimensions';
 
 const SignUp = ({navigation}) => {
-  const [date, setDate] = useState(new Date());
   const [open, setOpen] = useState(false);
+  const [date, setDate] = useState(null);
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
 
-  const goToSignIn = () => navigation.navigate('SignIn');
-  const goToSignUpPin = () => navigation.navigate('SignUpPin');
-
+  const handleEmail = val => setEmail(val);
+  const handleName = val => setName(val);
+  const handlePass = val => setPass(val);
+  const handlePhone = val => setPhone(val);
   const handleDatePicker = () => setOpen(true);
+
   const onCancelDate = () => setOpen(false);
   const onConfirmDate = date => {
     setDate(date);
     setOpen(false);
   };
 
-  const {primary: p, secondary: s} = COLORS;
-  const ShowInputs = (val, i) => <LabelledInput label={val} key={i} />;
+  const clearInputs = () => {
+    setDate(null);
+    setEmail('');
+    setName('');
+    setPass('');
+    setPhone('');
+  };
 
+  const goToSignUpPin = () => navigation.navigate('SignUpPin');
+  const goToSignIn = () => {
+    clearInputs();
+    navigation.navigate('SignIn');
+  };
+
+  const handleFormSubmission = () => {
+    const {message, isValid} = HANDLERS.handleFormValidity(
+      email,
+      pass,
+      phone,
+      name,
+      date,
+    );
+    if (isValid) {
+      clearInputs();
+      goToSignUpPin();
+    } else {
+      Alert.alert('Error', message);
+    }
+  };
+
+  const {primary: p, secondary: s} = COLORS;
   return (
-    <ImageBackground
-      source={ASSETS.SignUpBack}
-      style={[THEME.fill, styles.container]}>
-      <StatusBarBlue />
-      <View style={styles.header}>
-        <Logo style={{zIndex: 999}} />
-      </View>
-      <ScrollView style={styles.form}>
-        <View style={[THEME.justifyCentered, styles.formBody]}>
-          <Text style={[FONTS.bold.pt24, styles.formH1]}>Sign Up</Text>
-          {CONSTANTS.SignUpScreenBtnLabels.map(ShowInputs)}
-          <DateInput
-            label="Birthday"
-            onClick={handleDatePicker}
-            data={date.toDateString()}
-            disabled={false}
-          />
-          <DatePicker
-            androidVariant="nativeAndroid"
-            modal
-            open={open}
-            date={date}
-            mode="date"
-            onConfirm={onConfirmDate}
-            onCancel={onCancelDate}
-            textColor={s.black}
-          />
-          <BtnSimple
-            text="Sign Up"
-            back={p.orange}
-            color={s.white}
-            onClick={goToSignUpPin}
-          />
-          <View style={styles.footer}>
-            <Text style={styles.footerText}>Already have an account?</Text>
-            <TouchableOpacity onPress={goToSignIn}>
-              <Text style={[FONTS.semibold.pt16, {color: p.orange}]}>
-                Sign In
-              </Text>
-            </TouchableOpacity>
+    <ScreenWrapper>
+      <ImageBackground
+        source={ASSETS.SignUpBack}
+        style={[THEME.fill, styles.container]}>
+        <KeyboardAvoidingView style={[THEME.fill, styles.container]}>
+          <CustomStatusBar />
+          <View style={styles.header}>
+            <Logo style={{zIndex: 999}} />
           </View>
-        </View>
-      </ScrollView>
-    </ImageBackground>
+          <ScrollView style={styles.form}>
+            <View style={[THEME.justifyCentered, styles.formBody]}>
+              <Text style={[FONTS.bold.pt24, styles.formH1]}>Sign Up</Text>
+              <LabelledInput label="Name" data={name} onChange={handleName} />
+              <LabelledInput
+                label="Phone Number"
+                data={phone}
+                onChange={handlePhone}
+              />
+              <LabelledInput
+                label="Email Address"
+                data={email}
+                onChange={handleEmail}
+              />
+              <LabelledInput
+                label="Password"
+                data={pass}
+                onChange={handlePass}
+              />
+              <DateInput
+                label="Birthday"
+                onClick={handleDatePicker}
+                data={date ? date.toDateString() : ''}
+                disabled={false}
+              />
+              <DatePicker
+                androidVariant="nativeAndroid"
+                modal
+                open={open}
+                date={date || new Date()}
+                mode="date"
+                onConfirm={onConfirmDate}
+                onCancel={onCancelDate}
+                textColor={s.black}
+              />
+              <BtnSimple
+                text="Sign Up"
+                back={p.orange}
+                color={s.white}
+                onClick={handleFormSubmission}
+              />
+              <View style={styles.footer}>
+                <Text style={styles.footerText}>Already have an account?</Text>
+                <TouchableOpacity onPress={goToSignIn}>
+                  <Text style={[FONTS.semibold.pt16, {color: p.orange}]}>
+                    Sign In
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </ImageBackground>
+    </ScreenWrapper>
   );
 };
 
@@ -111,4 +167,5 @@ const styles = StyleSheet.create({
   formBody: {gap: 15, paddingVertical: 50},
   formH1: {color: COLORS.secondary.black, alignSelf: 'flex-start'},
   footer: {flexDirection: 'row', justifyContent: 'space-between', gap: 5},
+  footerText: {color: COLORS.secondary.black},
 });
