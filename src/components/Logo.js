@@ -33,5 +33,6 @@ const styles = StyleSheet.create({
   logoText: {
     color: COLORS.secondary.white,
     ...FONTS.semibold.pt32,
+    fontFamily:'Montserrat-Light'
   },
 });

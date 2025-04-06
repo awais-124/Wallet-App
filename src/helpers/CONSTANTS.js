@@ -3,7 +3,7 @@ import ASSETS from './imports';
 
 const Six = Array(6).fill(0);
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+const SPLASH_TIMEOUT = 3000;
 const KeyPad = [
   {alpha: '', num: '1'},
   {alpha: 'ABC', num: '2'},
@@ -232,6 +232,7 @@ const CheckoutCards = [
 ];
 
 const CONSTANTS = {
+  SPLASH_TIMEOUT,
   CheckoutCards,
   BottomNav,
   Notifs,

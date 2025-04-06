@@ -167,5 +167,5 @@ const styles = StyleSheet.create({
   formBody: {gap: 15, paddingVertical: 50},
   formH1: {color: COLORS.secondary.black, alignSelf: 'flex-start'},
   footer: {flexDirection: 'row', justifyContent: 'space-between', gap: 5},
-  footerText: {color: COLORS.secondary.black},
+  footerText: {...mon,color: COLORS.secondary.black},
 });

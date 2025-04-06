@@ -5,6 +5,7 @@ import {StyleSheet, Text, ImageBackground} from 'react-native';
 import CustomStatusBar from '../../components/StatusBar/CustomStatusBar';
 import Logo from '../../components/Logo';
 
+import CONSTANTS from '../../helpers/CONSTANTS';
 import ASSETS from '../../helpers/imports';
 import COLORS from '../../styles/colors';
 import FONTS from '../../styles/typography';
@@ -16,7 +17,7 @@ const Splash = ({navigation}) => {
   const navigateToHome = () => navigation.replace('SignIn');
 
   useEffect(() => {
-    const timeoutId = setTimeout(navigateToHome, 5000);
+    const timeoutId = setTimeout(navigateToHome, CONSTANTS.SPLASH_TIMEOUT);
     return () => clearTimeout(timeoutId);
   }, []);
 

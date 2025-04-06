@@ -2,11 +2,15 @@
 
 const COLORS = {
   primary: {
-    blue: '#1F6CFF',
-    orange: '#FF9900',
+    // blue: '#1F6CFF',
+    // orange: '#FF9900',
+
+    blue: '#640D6B',
+    orange: '#E65C19',
   },
   secondary: {
     white: '#ffffff',
+    white: '#dddddd',
     darkBlue: '#004AD7',
     oceanBlue: '#00D1FF',
     softRed: '#FF6854',

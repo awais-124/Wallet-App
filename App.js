@@ -13,6 +13,7 @@ import Notifications from './src/screens/HOME/Notifications';
 import ScanBarcode from './src/screens/PAYMENT/ScanBarcode';
 import MyBarcode from './src/screens/PAYMENT/MyBarcode';
 import Checkout from './src/screens/PAYMENT/Checkout';
+import Profile from './src/screens/PROFILE/Profile';
 
 const Stack = createNativeStackNavigator();
 
@@ -20,7 +21,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Checkout"
+        initialRouteName="Splash"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="Splash" component={SplashScreen} />
         <Stack.Screen name="SignIn" component={SignInScreen} />
@@ -34,6 +35,7 @@ export default function App() {
         <Stack.Screen name="ScanBarcode" component={ScanBarcode} />
         <Stack.Screen name="MyBarcode" component={MyBarcode} />
         <Stack.Screen name="Checkout" component={Checkout} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -19,9 +19,9 @@ import ASSETS from '../../helpers/imports';
 import COLORS from '../../styles/colors';
 import FONTS from '../../styles/typography';
 import THEME from '../../styles/theme';
+import CONSTANTS from '../../helpers/CONSTANTS';
 
 import {screen_height, screen_width} from '../../utils/Dimensions';
-import CONSTANTS from '../../helpers/CONSTANTS';
 
 const {primary: p, secondary: s} = COLORS;
 
@@ -37,7 +37,7 @@ const Home = ({navigation}) => {
   const navigateForward = name => {
     setPassword('');
     setEmail('');
-    navigate(name);
+    navigate('Splash');
   };
 
   useEffect(
@@ -63,7 +63,7 @@ const Home = ({navigation}) => {
           <CustomStatusBar />
           <Logo style={styles.logo} />
           <View style={[THEME.col, THEME.justifyCentered, styles.form]}>
-            <Text style={[FONTS.bold.pt24, styles.formHeading]}>Sign In</Text>
+            <Text style={styles.formHeading}>Sign In</Text>
             <LabelledInput
               label="Email/Phone Number"
               labelColor={s.greyThree}

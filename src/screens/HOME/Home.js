@@ -82,6 +82,7 @@ const styles = StyleSheet.create({
   container: {
     ...THEME.fill,
     backgroundColor: s.white,
+    // justifyContent: 'space-between',
     gap: 30,
   },
   actions: {
@@ -110,6 +111,10 @@ const styles = StyleSheet.create({
     ...THEME.justifyCentered,
     paddingHorizontal: 10,
     paddingBottom: 20,
+    // position: 'absolute',
+    // bottom: 0,
+    // left: 0,
+    // right: 0,
   },
   pay: {
     backgroundColor: COLORS.primary.blue,

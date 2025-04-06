@@ -33,8 +33,12 @@ import MENU from '../assets/Icon/Menu.png';
 import PRODUCT from '../assets/Icon/Product.png';
 import SHOP from '../assets/Icon/Shop.png';
 import CHART from '../assets/Icon/Chart.png';
+import LOGOUT from '../assets/Icon/Logout.png';
+import RIGHT from '../assets/Icon/Right.png';
 
 const ICONS = {
+  RIGHT,
+  LOGOUT,
   CHART,
   SHOP,
   PRODUCT,
